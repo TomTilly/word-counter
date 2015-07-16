@@ -1,0 +1,22 @@
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#errorMsg {
+    font-style: italic;
+    height: 14px;
+    margin: 0;
+    font-size: 10px;
+}
+
+div {
+    margin-top: 15px;
+}
