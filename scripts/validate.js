@@ -4,20 +4,18 @@ var errorMsg = document.getElementById('errorMsg');
 
 function validate(e){
     if (!e){
-        e = window.event;                                           // IE Fallback
+        e = window.event;   // IE Fallback
     }
     errorMsg.textContent = '';
     var value = textInput.value;
-    value = value.replace(/[^A-Za-z_\s]/,'!').replace(/\d/,'!');    // If a non-alphanumeric character is used, or a digit character is used
-    if (value === ''){
+    var re = new RegExp(/^\s*$/);
+    var re2 = new RegExp(/<.*>/);
+    if (re.test(value)){        // Is input empty?
         e.preventDefault();
         errorMsg.textContent = "Error: Input can't be empty"
-    }
-    for(var i = 0; i < value.length; i++){
-        if(value.charAt(i) === '!'){
-            e.preventDefault();
-            errorMsg.textContent = "Error: Please only enter spaces and alphanumeric characters";
-        }
+    } else if (re2.test(value)){    // Does input contain HTML tags?
+        e.preventDefault();
+        errorMsg.textContent = "Error: You cannot include HTML tags"
     }
 }
 if (submitButton.addEventListener){                                 // Add Event Listener

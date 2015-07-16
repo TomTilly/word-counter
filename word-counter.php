@@ -7,15 +7,21 @@
     </head>
     <body>
         <?php
+            
             if ($_SERVER['REQUEST_METHOD'] === "POST") {    // If user has submitted the form, handle the data
-                $textArray = explode(' ', $_POST['text']);
-                // $hashTextArray = [];
+                $text = $_POST['text'];
+                $pattern = '/[^A-Za-z\s]/';
+                $text = preg_replace($pattern, '', $text);      // Remove all special characters and digits
+                $text = strtolower($text);
+                $textArray = explode(' ', $text);
                 $hashTextArray = array();
-                foreach ($textArray as $key => $value){
-                    if($hashTextArray[$value]){
-                        $hashTextArray[$value] += 1;
-                    } else {
-                        $hashTextArray[$value] = 1;
+                foreach ($textArray as $value){
+                    if ($value !== ''){ // If value isn't an empty string
+                        if($hashTextArray[$value]){
+                            $hashTextArray[$value] += 1;
+                        } else {
+                            $hashTextArray[$value] = 1;
+                        }
                     }
                 }
             }
@@ -30,8 +36,10 @@
             </form>
             <div>
                 <?php
-                    foreach($hashTextArray as $key => $value){
-                        echo "$key: $value<br />";
+                    if (isset($hashTextArray)){
+                        foreach($hashTextArray as $key => $value){
+                            echo "$key: $value<br />";
+                        }
                     }
                 ?>
             </div>
