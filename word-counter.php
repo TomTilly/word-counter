@@ -17,7 +17,7 @@
                 $hashTextArray = array();
                 foreach ($textArray as $value){
                     if ($value !== ''){ // If value isn't an empty string
-                        if($hashTextArray[$value]){
+                        if(isset($hashTextArray[$value])){
                             $hashTextArray[$value] += 1;
                         } else {
                             $hashTextArray[$value] = 1;
