@@ -13,14 +13,14 @@
                 $pattern = '/[^A-Za-z\s]/';
                 $text = preg_replace($pattern, '', $text);      // Remove all special characters and digits
                 $text = strtolower($text);
-                $textArray = explode(' ', $text);
-                $hashTextArray = array();
-                foreach ($textArray as $value){
+                $text_array = explode(' ', $text);
+                $hash_text_array = array();
+                foreach ($text_array as $value){
                     if ($value !== ''){ // If value isn't an empty string
-                        if(isset($hashTextArray[$value])){
-                            $hashTextArray[$value] += 1;
+                        if(isset($hash_text_array[$value])){
+                            $hash_text_array[$value] += 1;
                         } else {
-                            $hashTextArray[$value] = 1;
+                            $hash_text_array[$value] = 1;
                         }
                     }
                 }
@@ -36,8 +36,8 @@
             </form>
             <div>
                 <?php
-                    if (isset($hashTextArray)){
-                        foreach($hashTextArray as $key => $value){
+                    if (isset($hash_text_array)){
+                        foreach($hash_text_array as $key => $value){
                             echo "$key: $value<br />";
                         }
                     }
